@@ -1,0 +1,43 @@
+<style>
+.status_box .panel {
+    -webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	margin-bottom: 30px;
+	margin-top:10px;
+}
+
+.status_box .panel.panel-default {
+	border: 1px solid #d4d4d4;
+	-webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.1);
+}
+
+.status_box .btn-icon {
+	color: #484848;
+}
+</style>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container status_box">
+      <div class="panel panel-default">
+          <div class="panel-body">
+            <input type="email" class="form-control" placeholder="{{ pet.name }}'s status">
+          </div>
+            <div class="panel-footer">
+              <div class="btn-group">
+                <button type="button" class="btn btn-link btn-icon"><i class="fa fa-map-marker"></i></button>
+                <button type="button" class="btn btn-link btn-icon"><i class="fa fa-users"></i></button>
+                <button type="button" class="btn btn-link btn-icon"><i class="fa fa-camera"></i></button>
+                <button type="button" class="btn btn-link btn-icon"><i class="fa fa-video-camera"></i></button>
+              </div>
+              <div class="pull-right">
+                <button type="button" class="btn btn-success">Post</button>
+              </div>
+            </div>
+      </div>
+</div>

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load render_bundle from webpack_loader %}
+{% load static %}
+
+{% block body %}
+<style>
+    /* try : https://tutorialzine.com/2017/02/freebie-4-bootstrap-galleries */
+    /* posts and comments page */
+    td.profile {
+        padding: 3px;
+        border: 1px solid silver;
+        height:300px;
+        width: 250px;
+        overflow: hidden;
+        text-align: center;
+        vertical-align: middle;
+    }
+    td.profile img.profile_photo {
+        max-width: 250px;
+        max-height: 280px;
+    }
+    table.left_column {
+        border-spacing: 10px;
+        border-collapse: separate;
+    }
+
+    table.wrapper {
+        border-spacing: 50px;
+        border-collapse: separate;
+    }
+
+</style>
+    <div id="App1"></div>
+    {% render_bundle 'vendors' %}
+    {% render_bundle 'App1' %}
+
+    <table class="wrapper">
+        <tr>
+            <td class="left_column">
+                <table class="gallery_wrapper">
+                    <tr>
+                    {% for pet in all_pets %}
+                        {% if forloop.counter <= 3 %}
+                        <td class='profile'><img class='profile_photo' src="{% static pet.profile_photo %} "/>
+                            <div><a href="{% url 'pets:details' pet.id %}"/> {{ pet.name }} </a></div>
+                        </td>
+                        {% endif %}
+                    {% endfor %}
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="login">
+                    <tr>
+                        <td>
+                            {% include 'login.html' %}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}
