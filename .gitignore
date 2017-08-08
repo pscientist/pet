@@ -1,2 +1,10 @@
 db.sqlite3
 pets/static/pet_profiles
+pets/static/bundles
+node_modules
+*.pyc
+pets/migrations
+.idea/
+.gitignore
+
+
