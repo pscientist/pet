@@ -10,10 +10,6 @@ class PetImage(models.Model):
     def __str__(self):
         return self.caption
 
-class VetVisit(models.Model):
-    visit_date = models.DateTimeField(null=True, blank=True)
-    description = models.TextField(max_length=500, null=True, blank=True)
-
 class PhotoAlbum(models.Model):
     cover_image = models.ForeignKey(PetImage)
     caption = models.CharField(max_length=250)
@@ -51,7 +47,6 @@ class Pet(models.Model):
     cover_photo = models.ImageField(upload_to="pet_covers/", height_field=500, width_field=500, null=True, blank=True)
     date_neutered = models.DateTimeField(null=True, blank=True)
     date_chipped = models.DateTimeField(null=True, blank=True)
-    vet_visit = models.ForeignKey(VetVisit, null=True, blank=True)
     photo_album = models.ForeignKey(PhotoAlbum, null=True, blank=True)
     photo = models.ForeignKey(PetImage, null=True, blank=True)
 
@@ -61,6 +56,22 @@ class Pet(models.Model):
     def image_tag(self):
         return u'<img src="%s" />' % self.profile_photo.url
 
+
+class Recipe(models.Model):
+    name = models.CharField(max_length=200)
+    ingredients = models.TextField(max_length=1000)
+    steps = models.TextField(max_length=1000)
+    pet = models.ForeignKey(Pet)
+    def __str__(self):
+        return self.name
+
+
+class VetVisit(models.Model):
+    visit_date = models.DateTimeField(null=True, blank=True)
+    description = models.TextField(max_length=500, null=True, blank=True)
+    pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
+    def __str__(self):
+        return "{} on {}".format(self.description, self.visit_date)
 
 class Post(models.Model):
     post_body = models.CharField(max_length=300)

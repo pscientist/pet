@@ -58,12 +58,20 @@
             </div>
             {% include 'gallery.html' %}
             <div class="panel panel-default">
-                <div class="panel-heading"> Recipes  for {{ pet.name }} </div>
-                <div class="panel-body"> {{ pet.dislikes }} </div>
+                <div class="panel-heading"> Recipes for {{ pet.name }} </div>
+                <div class="panel-body">
+                    {% for recipe in pet.recipe_set.all %}
+                        {{ recipe.name }} <br/>
+                    {% endfor %}
+                </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading"> {{ pet.name }}'s scheduls </div>
-                <div class="panel-body"> {{ pet.dislikes }} </div>
+                <div class="panel-heading"> {{ pet.name }}'s schedules </div>
+                <div class="panel-body">
+                    {% for schedule in pet.vetvisit_set.all %}
+                        {{ schedule.description }} at {{ schedule.visit_date }} <br/>
+                    {% endfor %}
+                </div>
             </div>
 
             <!-- panel -->

@@ -10,8 +10,8 @@ class IndexView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'all_pets'
 
-    # def get_queryset(self):
-    #     return Pet.objects().all()
+    def get_queryset(self):
+        return Pet.objects.all()
 
 
 class DetailView(generic.DetailView):
