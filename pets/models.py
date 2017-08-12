@@ -77,6 +77,8 @@ class Post(models.Model):
     post_body = models.CharField(max_length=300)
     author = models.ForeignKey(Pet)
     created_at = models.DateTimeField(default=datetime.now())
+    def __str__(self):
+        return self.post_body[:10] + "..."
 
 class Comment(models.Model):
     post_body = models.CharField(max_length=300)

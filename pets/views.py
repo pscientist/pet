@@ -26,6 +26,9 @@ class ApiDetails(generics.RetrieveUpdateDestroyAPIView):
 
 class BlogView(generic.DetailView):
     template_name = 'blog.html'
-    model = Post
+    model = Pet
     context_object_name = 'all_posts'
+
+    def get_queryset(self):
+        return Post.objects.filter(author=2)
 
