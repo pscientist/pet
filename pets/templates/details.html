@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_string_funcs %}
 
 {% block body %}
 
@@ -20,6 +21,7 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">From </strong></span> {{ pet.city }} {{ pet.country }}</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Sex</strong></span> {{ pet.gender }} </li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong class="">Breed </strong></span> {{ pet.breed }} </li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Owner </strong></span> {{ pet.owner }} </li>
             </ul>
             <ul class="list-group">
                 <li class="list-group-item text-muted" contenteditable="false">Social</li>
@@ -34,8 +36,8 @@
         <div class="col-sm-9" contenteditable="false">
             <div class="panel panel-default">
                 <div class="panel-heading"> About </div>
-                <div class="panel-body"> {{ pet.story }}
-                    {{ pet.description }}
+                <div class="panel-body"> {{ pet.story | newline | safe}}
+                    {{ pet.description | newline | safe }}
                 </div>
             </div>
             <div class="panel panel-default">
@@ -45,16 +47,16 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading"> Daily Habits </div>
-                <div class="panel-body"> {{ pet.habits }} </div>
+                <div class="panel-heading"> Daily rituals </div>
+                <div class="panel-body"> {{ pet.habits | newline | safe}} </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading"> Favourites </div>
-                <div class="panel-body"> {{ pet.favourites }} </div>
+                <div class="panel-body"> {{ pet.favourites | newline | safe}} </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading"> Dislikes </div>
-                <div class="panel-body"> {{ pet.dislikes }} </div>
+                <div class="panel-body"> {{ pet.dislikes | newline | safe }} </div>
             </div>
             {% include 'gallery.html' %}
             <div class="panel panel-default">
