@@ -24,11 +24,18 @@ class ApiDetails(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PetSerializer
 
 
-class BlogView(generic.DetailView):
+class BlogView(generic.ListView):
     template_name = 'blog.html'
-    model = Pet
-    context_object_name = 'all_posts'
+    model = Post
+    context_object_name = 'the_posts'
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogView, self).get_context_data(**kwargs)
+        context['pet'] = Pet.objects.get(pk=2)
+        return context
 
     def get_queryset(self):
         return Post.objects.filter(author=2)
+
+
 

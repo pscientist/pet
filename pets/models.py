@@ -49,6 +49,7 @@ class Pet(models.Model):
     date_chipped = models.DateTimeField(null=True, blank=True)
     photo_album = models.ForeignKey(PhotoAlbum, null=True, blank=True)
     photo = models.ForeignKey(PetImage, null=True, blank=True)
+    friends = models.ManyToManyField('self', null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -86,4 +87,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(default=datetime.now())
     to_post = models.ForeignKey(Post)
     EXPRESSION_CHOICES = ((1, 'OMG'), (2, 'Cute'), (3, 'Love'), (4, 'Sad'), (5, 'Default'))
-    expression = models.CharField(max_length=1, choices = EXPRESSION_CHOICES)
+    expression = models.IntegerField(choices = EXPRESSION_CHOICES, null=True, blank=True)
+    def __str__(self):
+        return self.post_body[:10] + "..."
+

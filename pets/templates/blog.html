@@ -46,9 +46,34 @@ body{
 }
 </style>
 <div class="container">
+	<div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Friends
+            </div>
+            <div class="panel-body">
+                <ul>
+                {% for f in pet.friends.all %}
+                    <li><img class="media-object photo-profile" src="{% static f.profile_photo %}" width="40" height="40" alt="...">
+                        {{ f.name }} </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Photo stream
+            </div>
+            <div class="panel-body">
+
+            </div>
+        </div>
+
+    </div>
 	<div class="col-md-5">
         <div class="panel panel-default">
             <div class="panel-body">
+                {% for p in the_posts %}
                <section class="post-heading">
                     <div class="row">
                         <div class="col-md-11">
@@ -59,8 +84,8 @@ body{
                                 </a>
                               </div>
                               <div class="media-body">
-                                <a href="#" class="anchor-username"><h4 class="media-heading"> {{ pet.name }} </h4></a>
-                                <a href="#" class="anchor-time">51 mins</a>
+                                <a href="#" class="anchor-username"><h4 class="media-heading"> {{ pet.nickname }} </h4></a>
+                                <a href="#" class="anchor-time"> {{ p.created_at }} </a>
                               </div>
                             </div>
                         </div>
@@ -70,14 +95,7 @@ body{
                     </div>
                </section>
                <section class="post-body">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-                   turpis sem, dictum id bibendum eget, malesuada ut massa. Ut scel
-                   erisque nulla sed luctus dapibus. Nulla sit amet mi vitae purus sol
-                   licitudin venenatis. Praesent et sem urna. Integer vitae lectus nis
-                   l. Fusce sapien ante, tristique efficitur lorem et, laoreet ornare lib
-                   ero. Nam fringilla leo orci. Vivamus semper quam nunc, sed ornare magna dignissim sed. Etiam interdum justo quis risus
-                   efficitur dictum. Nunc ut pulvinar quam. N
-                   unc mollis, est a dapibus dignissim, eros elit tempor diam, eu tempus quam felis eu velit.</p>
+                   <p> {{ p.post_body }} </p>
                </section>
                <section class="post-footer">
                    <hr>
@@ -88,6 +106,8 @@ body{
                             <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
                         </ul>
                    </div>
+
+                   {% for c in p.comment_set.all %}
                    <div class="post-footer-comment-wrapper">
                        <div class="comment-form">
 
@@ -96,19 +116,48 @@ body{
                             <div class="media">
                               <div class="media-left">
                                 <a href="#">
-                                  <img class="media-object photo-profile" src="{% static pet.profile_photo %}" width="32" height="32" alt="...">
+                                  <img class="media-object photo-profile" src="{% static c.author.profile_photo %}" width="32" height="32" alt="...">
                                 </a>
                               </div>
                               <div class="media-body">
-                                <a href="#" class="anchor-username"><h4 class="media-heading">Media heading</h4></a>
-                                <a href="#" class="anchor-time">51 mins</a>
+                                <a href="#" class="anchor-username"><h5 class="media-heading"> {{ c.author }} </h5></a>
+                                <a href="#" class="anchor-time"> {{ c.created_at }} </a>
+                                <p> {{ c.post_body }} </p>
                               </div>
                             </div>
                        </div>
                    </div>
+                   {% endfor %}
+
                </section>
+                {% endfor %}
             </div>
         </div>
 	</div>
+
+	<div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Pet news
+            </div>
+            <div class="panel-body">
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Upcoming schedules
+            </div>
+            <div class="panel-body">
+                 {% for schedule in pet.vetvisit_set.all %}
+                    {{ schedule.description }} at {{ schedule.visit_date }} <br/>
+                 {% endfor %}
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
 {% endblock %}
+
