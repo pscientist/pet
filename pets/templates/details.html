@@ -13,6 +13,7 @@
         <div class="col-sm-3">
             <div style="padding: 20px; width: 100%; margin: 0 auto;">
                 <img title="profile image" class="img-responsive" src="{% static pet.profile_photo %}">
+                <a href="{% url 'pets:blog' pet.id %}">chat...</a>
             </div>
 
             <ul class="list-group">

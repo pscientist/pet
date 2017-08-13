@@ -52,12 +52,17 @@ body{
                 Friends
             </div>
             <div class="panel-body">
-                <ul>
+                <table>
                 {% for f in pet.friends.all %}
-                    <li><img class="media-object photo-profile" src="{% static f.profile_photo %}" width="40" height="40" alt="...">
-                        {{ f.name }} </li>
+                    <tr><td>
+                        <img class="media-object photo-profile" src="{% static f.profile_photo %}" width="40" height="40" alt="...">
+                        </td>
+                        <td style="padding-left: 8px;">
+                        {{ f.name }}
+                        </td>
+                    </tr>
                 {% endfor %}
-                </ul>
+                </table>
             </div>
         </div>
         <div class="panel panel-default">
